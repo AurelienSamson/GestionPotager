@@ -15,12 +15,24 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Autowired
 	PotagerDAO daoPotager;
-	
+
 	@Autowired
 	CarreDAO daoCarre;
+
 	@Override
 	public void addPotager(Potager potager) {
 		daoPotager.save(potager);
+	}
+
+	@Override
+	public void upadtePotager(Potager potager) {
+		daoPotager.save(potager);
+	}
+
+	@Override
+	public void deletePotager(Potager potager) {
+		daoPotager.deleteCarreByPotager(potager);
+		daoPotager.delete(potager);
 	}
 
 	@Override

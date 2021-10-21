@@ -35,7 +35,7 @@ public class Potager {
 
 	@Override
 	public String toString() {
-		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface + ", ville=" + ville
+		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
 				+ ", carreLst=" + carreLst + "]";
 	}
 	
