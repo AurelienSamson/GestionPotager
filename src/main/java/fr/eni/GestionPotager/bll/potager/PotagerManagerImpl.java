@@ -3,23 +3,34 @@ package fr.eni.GestionPotager.bll.potager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
+import fr.eni.GestionPotager.dal.CarreDAO;
 import fr.eni.GestionPotager.dal.PotagerDAO;
 
+@Service
 public class PotagerManagerImpl implements PotagerManager {
 
 	@Autowired
-	PotagerDAO dao;
+	PotagerDAO daoPotager;
+	
+	@Autowired
+	CarreDAO daoCarre;
 	@Override
 	public void addPotager(Potager potager) {
-		dao.save(potager);
+		daoPotager.save(potager);
 	}
 
 	@Override
 	public List<Potager> getAllPotager() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Potager>) daoPotager.findAll();
+	}
+
+	@Override
+	public List<Carre> getAllcarreByPotager(Potager potager) {
+		return daoCarre.findAllByPotager(potager);
 	}
 
 }
