@@ -1,9 +1,13 @@
 package fr.eni.GestionPotager.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +24,8 @@ public class Carre {
 	private int surface;
 	private String typeSol;
 	private String typeExpo;
+	@OneToMany
+	private List<Plante> lstPlante = new ArrayList<>();
 	
 	public Carre(Potager potager, int surface, String typeSol, String typeExpo) {
 		super();
