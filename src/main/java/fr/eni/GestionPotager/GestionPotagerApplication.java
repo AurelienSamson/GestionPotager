@@ -30,6 +30,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",10,"Quimper");
 		potagerManager.addPotager(p1);
 		carreManager.addCarre(new Carre(p1, 100, "Argileux", "Plein soleil"));
+		carreManager.addCarre(new Carre(p1, 10, "Sableux", "ESE"));
 		potagerManager.getAllPotager().forEach(System.out::println);
 		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
 	}
