@@ -32,6 +32,12 @@ public class Potager {
 		this.surface = surface;
 		this.ville = ville;
 	}
+
+	@Override
+	public String toString() {
+		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
+				+ ", carreLst=" + carreLst + "]";
+	}
 	
 	
 }

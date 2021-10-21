@@ -3,12 +3,14 @@ package fr.eni.GestionPotager.bll.carre;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
 import fr.eni.GestionPotager.dal.CarreDAO;
 import fr.eni.GestionPotager.dal.PlanteDAO;
 
+@Service
 public class CarreManagerImpl implements CarreManager {
 
 	@Autowired
