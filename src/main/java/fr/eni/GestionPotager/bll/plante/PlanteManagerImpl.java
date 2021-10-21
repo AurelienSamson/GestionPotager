@@ -12,9 +12,12 @@ public class PlanteManagerImpl implements PlanteManager {
 
 	@Autowired
 	PlanteDAO daoPlante;
+	
+	private boolean flag = false;
+	
 	@Override
 	public void addPlante(Plante plante) {
-		boolean flag = false;
+		
 		for (Plante plantes : getAllPlante()) {
 			if(plante.getNom().equals(plantes.getNom())&& plante.getVariete().equals(plantes.getVariete())) {
 				flag=true;
@@ -27,7 +30,14 @@ public class PlanteManagerImpl implements PlanteManager {
 
 	@Override
 	public void updatePlante(Plante plante) {
-		daoPlante.save(plante);
+		for (Plante plantes : getAllPlante()) {
+			if(plante.getNom().equals(plantes.getNom())&& plante.getVariete().equals(plantes.getVariete())) {
+				flag=true;
+			}
+		}
+		if(flag==false) {
+			daoPlante.save(plante);
+		}
 	}
 
 	@Override
