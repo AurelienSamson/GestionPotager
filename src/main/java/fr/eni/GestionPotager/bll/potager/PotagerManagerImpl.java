@@ -42,7 +42,7 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public List<Carre> getAllcarreByPotager(Potager potager) {
-		return daoCarre.findAllByPotager(potager);
+		return potager.getCarreLst();
 	}
 
 }

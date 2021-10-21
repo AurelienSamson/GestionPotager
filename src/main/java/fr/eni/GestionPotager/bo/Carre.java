@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Carre {
 	@Id
 	@GeneratedValue
@@ -26,12 +27,20 @@ public class Carre {
 	@OneToMany
 	private List<Plante> lstPlante = new ArrayList<>();
 	
-	public Carre(int surface, String typeSol, String typeExpo) {
+	public Carre(Potager potager, int surface, String typeSol, String typeExpo) {
 		super();
+		this.potager = potager;
 		this.surface = surface;
 		this.typeSol = typeSol;
 		this.typeExpo = typeExpo;
 	}
+
+	@Override
+	public String toString() {
+		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
+				+ ", lstPlante=" + lstPlante + "]";
+	}
+	
 	
 	
 }
