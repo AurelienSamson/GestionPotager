@@ -48,6 +48,8 @@ public class CarreManagerImpl implements CarreManager {
 			} else {
 				System.out.println("Vous ne pouvez plus ajouter de carré, il n'y a plus de place dans le potager.");
 			}
+		} else {
+			
 		}
 		
 	}

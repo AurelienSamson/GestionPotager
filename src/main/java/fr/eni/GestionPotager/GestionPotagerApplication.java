@@ -27,11 +27,19 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
-		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",10,"Quimper");
-		potagerManager.addPotager(p1);
-		carreManager.addCarre(new Carre(p1, 100, "Argileux", "Plein soleil"));
-		potagerManager.getAllPotager().forEach(System.out::println);
-		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
+//		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",10,"Quimper");
+//		potagerManager.addPotager(p1);
+//		carreManager.addCarre(new Carre(100, "Argileux", "Plein soleil"));
+//		potagerManager.getAllPotager().forEach(System.out::println);
+//		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
+		
+		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
+		
+		Carre carre = new Carre(25, "humide", "Soleil");
+		
+		potagerManager.addPotager(potager);
+		
+		carreManager.addCarre(carre, potager);
 	}
 
 }
