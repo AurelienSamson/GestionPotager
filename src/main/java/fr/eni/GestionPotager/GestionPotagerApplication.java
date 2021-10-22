@@ -37,7 +37,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		
 		Carre carre = new Carre(25, "humide", "Soleil");
 		try {
-//			potagerManager.addPotager(potager);
+			potagerManager.addPotager(potager);
 			carreManager.addCarre(carre, potager);
 		} catch (CarreManagerException e) {
 			System.out.println(e.getMessage());

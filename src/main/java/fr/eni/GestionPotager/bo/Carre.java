@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -23,7 +24,7 @@ public class Carre {
 	private int surface;
 	private String typeSol;
 	private String typeExpo;
-	@OneToMany
+	@OneToMany(mappedBy="Plante")
 	private List<Plante> lstPlante = new ArrayList<>();
 	
 	public Carre(int surface, String typeSol, String typeExpo) {

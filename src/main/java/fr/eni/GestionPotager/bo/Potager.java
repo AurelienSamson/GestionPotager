@@ -22,7 +22,7 @@ public class Potager {
 	private String nom;
 	private int surface;
 	private String ville;
-	@OneToMany
+	@OneToMany(mappedBy="Carre")
 	private List<Carre> carreLst = new ArrayList<>();
 	
 	public Potager(String localisation, String nom, int surface, String ville) {
@@ -35,7 +35,7 @@ public class Potager {
 
 	@Override
 	public String toString() {
-		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
+		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "mï¿½ , ville=" + ville
 				+ ", carreLst=" + carreLst + "]";
 	}
 	
