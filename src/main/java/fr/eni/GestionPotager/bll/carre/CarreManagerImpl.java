@@ -48,7 +48,6 @@ public class CarreManagerImpl implements CarreManager {
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
 
-		carre.setPotager(potager);
 		potager.getCarreLst().add(carre);
 		dao.save(carre);
 		daoPotager.save(potager);
