@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
+import fr.eni.GestionPotager.bll.carre.CarreManagerException;
 //import fr.eni.GestionPotager.bll.carre.CarreManagerException;
 import fr.eni.GestionPotager.bll.potager.PotagerManager;
 import fr.eni.GestionPotager.bo.Action;
@@ -32,36 +33,30 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
+		
+		Carre carre = new Carre(potager, 25, "humide", "Soleil");
+		try {
+			potagerManager.addPotager(potager);
+			carreManager.addCarre(carre, potager);
+		} catch (CarreManagerException e) {
+			System.out.println(e.getMessage());
+		}
+		
 
-//		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",10,"Quimper");
+//		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",100,"Quimper");
 //		potagerManager.addPotager(p1);
-//		carreManager.addCarre(new Carre(100, "Argileux", "Plein soleil"));
+//		carreManager.addCarre(new Carre(p1,10, "Argileux", "Plein soleil"),p1);
+//		carreManager.addCarre(new Carre(p1, 10, "Sableux", "ESE"), p1);
+//		System.out.println("Tous les potagers: _____________________");
 //		potagerManager.getAllPotager().forEach(System.out::println);
+//
+//		System.out.println("Tous les carrés d'un potager: ______________");
 //		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
-		
-//		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
-//		
-//		Carre carre = new Carre(25, "humide", "Soleil");
-//		try {
-//			potagerManager.addPotager(potager);
-//			carreManager.addCarre(carre, potager);
-//		} catch (CarreManagerException e) {
-//			System.out.println(e.getMessage());
-//		}
-		
-
-		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",100,"Quimper");
-		potagerManager.addPotager(p1);
-		carreManager.addCarre(new Carre(p1,10, "Argileux", "Plein soleil"),p1);
-		carreManager.addCarre(new Carre(p1, 10, "Sableux", "ESE"), p1);
-		System.out.println("Tous les potagers: _____________________");
-		potagerManager.getAllPotager().forEach(System.out::println);
-
-		System.out.println("Tous les carrés d'un potager: ______________");
-		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
-		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré", "Quimper"));
-		System.out.println("Affichage des actions d'un potager: ________");
-		p1.getActionLst().forEach(System.out::println);
+//		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré", "Quimper"));
+//		System.out.println("Affichage des actions d'un potager: ________");
+//		p1.getActionLst().forEach(System.out::println);
 	
 
 	}
