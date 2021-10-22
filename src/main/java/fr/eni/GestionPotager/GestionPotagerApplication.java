@@ -25,7 +25,6 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
 
-	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 //		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",10,"Quimper");

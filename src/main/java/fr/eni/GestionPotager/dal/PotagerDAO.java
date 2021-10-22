@@ -15,5 +15,5 @@ public interface PotagerDAO extends CrudRepository<Potager, Integer> {
 	@Query("DELETE FROM Carre c WHERE c.potager =: potager")
 	void deleteCarreByPotager(@Param("potager") Potager potager);
 
-	boolean findByName(String nom);
+	boolean findByNom(String nom);
 }
