@@ -28,7 +28,6 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
 
-	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 
