@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
 import fr.eni.GestionPotager.dal.CarreDAO;
@@ -46,6 +47,12 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	public List<Carre> getAllcarreByPotager(Potager potager) {
 		return potager.getCarreLst();
+	}
+
+	@Override
+	public void addAction(Potager potager, Action action) {
+		potager.getActionLst().add(action);
+		daoPotager.save(potager);
 	}
 
 }

@@ -26,6 +26,8 @@ public class Carre {
 	private String typeExpo;
 	@OneToMany
 	private List<Plante> lstPlante = new ArrayList<>();
+	@OneToMany
+	private List<Action> actionLst = new ArrayList<Action>();
 	
 	public Carre(Potager potager, int surface, String typeSol, String typeExpo) {
 		super();
@@ -38,7 +40,7 @@ public class Carre {
 	@Override
 	public String toString() {
 		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
-				+ ", lstPlante=" + lstPlante + "]";
+				+ ", lstPlante=" + lstPlante + ", actions=" + actionLst + "]";
 	}
 	
 	

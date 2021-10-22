@@ -24,6 +24,8 @@ public class Potager {
 	private String ville;
 	@OneToMany
 	private List<Carre> carreLst = new ArrayList<>();
+	@OneToMany
+	private List<Action> actionLst = new ArrayList<Action>();
 	
 	public Potager(String localisation, String nom, int surface, String ville) {
 		super();
@@ -36,7 +38,7 @@ public class Potager {
 	@Override
 	public String toString() {
 		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
-				+ ", carreLst=" + carreLst + "]";
+				+ ", carreLst=" + carreLst + ", actions=" + actionLst +"]";
 	}
 	
 	
