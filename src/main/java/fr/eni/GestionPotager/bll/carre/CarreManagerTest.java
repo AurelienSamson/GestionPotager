@@ -24,13 +24,13 @@ public class CarreManagerTest implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
-		
-		Carre carre = new Carre(25, "humide", "Soleil");
-		
-		managerPotager.addPotager(potager);
-		
-		managerCarre.addCarre(carre, potager);
+//		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
+//		
+//		Carre carre = new Carre(25, "humide", "Soleil");
+//		
+//		managerPotager.addPotager(potager);
+//		
+//		managerCarre.addCarre(carre, potager);
 	}
 
 }

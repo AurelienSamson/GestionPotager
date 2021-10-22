@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,6 +25,8 @@ public class Potager {
 	private String ville;
 	@OneToMany(mappedBy="idCarre")
 	private List<Carre> carreLst = new ArrayList<>();
+	@OneToMany
+	private List<Action> actionLst = new ArrayList<Action>();
 	
 	public Potager(String localisation, String nom, int surface, String ville) {
 		super();
@@ -35,8 +38,9 @@ public class Potager {
 
 	@Override
 	public String toString() {
-		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "mï¿½ , ville=" + ville
-				+ ", carreLst=" + carreLst + "]";
+		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
+				+ ", carreLst=" + carreLst + ", actions=" + actionLst +"]";
+
 	}
 	
 	

@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
+import fr.eni.GestionPotager.dal.ActionDAO;
 import fr.eni.GestionPotager.dal.CarreDAO;
 import fr.eni.GestionPotager.dal.PotagerDAO;
 
@@ -20,6 +22,9 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Autowired
 	CarreDAO daoCarre;
+	
+	@Autowired
+	ActionDAO daoAction;
 
 	@Override
 	@Transactional
@@ -45,7 +50,14 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public List<Carre> getAllcarreByPotager(Potager potager) {
-		return daoCarre.findAllByPotager(potager);
+		return potager.getCarreLst();
+	}
+
+	@Override
+	public void addAction(Potager potager, Action action) {
+		potager.getActionLst().add(action);
+		daoAction.save(action);
+		daoPotager.save(potager);
 	}
 
 }

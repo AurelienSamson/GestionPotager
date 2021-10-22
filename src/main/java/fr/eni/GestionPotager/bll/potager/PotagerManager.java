@@ -2,6 +2,7 @@ package fr.eni.GestionPotager.bll.potager;
 
 import java.util.List;
 
+import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
 
@@ -12,4 +13,5 @@ public interface PotagerManager {
 	public void deletePotager( Potager potager);
 	public List<Potager> getAllPotager();
 	public List<Carre> getAllcarreByPotager(Potager potager);
+	public void addAction(Potager potager, Action action);
 }
