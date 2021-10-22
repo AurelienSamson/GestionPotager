@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
+import fr.eni.GestionPotager.bll.carre.CarreManagerException;
 import fr.eni.GestionPotager.bll.potager.PotagerManager;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
@@ -36,10 +37,17 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
 		
 		Carre carre = new Carre(25, "humide", "Soleil");
+		try {
+			potagerManager.addPotager(potager);
+			carreManager.addCarre(carre, potager);
+		} catch (CarreManagerException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e1) {
+			System.out.println(e1.getMessage());
+		} 
 		
-		potagerManager.addPotager(potager);
 		
-		carreManager.addCarre(carre, potager);
+		
 	}
 
 }

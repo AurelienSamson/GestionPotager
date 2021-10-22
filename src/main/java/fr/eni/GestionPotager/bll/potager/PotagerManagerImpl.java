@@ -2,6 +2,8 @@ package fr.eni.GestionPotager.bll.potager;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	CarreDAO daoCarre;
 
 	@Override
+	@Transactional
 	public void addPotager(Potager potager) {
 		daoPotager.save(potager);
 	}
