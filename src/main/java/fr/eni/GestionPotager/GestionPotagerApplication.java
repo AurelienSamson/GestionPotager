@@ -24,6 +24,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	
 	@Autowired
 	CarreManager carreManager;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
