@@ -24,7 +24,7 @@ public class Carre {
 	private int surface;
 	private String typeSol;
 	private String typeExpo;
-	@OneToMany(mappedBy="Plante")
+	@OneToMany(mappedBy="idPlante")
 	private List<Plante> lstPlante = new ArrayList<>();
 	
 	public Carre(int surface, String typeSol, String typeExpo) {

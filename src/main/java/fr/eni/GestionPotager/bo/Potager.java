@@ -22,7 +22,7 @@ public class Potager {
 	private String nom;
 	private int surface;
 	private String ville;
-	@OneToMany(mappedBy="Carre")
+	@OneToMany(mappedBy="idCarre")
 	private List<Carre> carreLst = new ArrayList<>();
 	
 	public Potager(String localisation, String nom, int surface, String ville) {
