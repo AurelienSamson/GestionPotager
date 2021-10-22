@@ -29,6 +29,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
 
+	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -42,7 +43,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		System.out.println("Tous les carrés d'un potager: ______________");
 		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
 		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré", "Quimper"));
-		System.out.println("Affichage d'un potager avec une action: ________");
+		System.out.println("Affichage des actions d'un potager: ________");
 		p1.getActionLst().forEach(System.out::println);
 
 
