@@ -23,7 +23,7 @@ public class Potager {
 	private String nom;
 	private int surface;
 	private String ville;
-	@OneToMany
+	@OneToMany(mappedBy="Carre")
 	private List<Carre> carreLst = new ArrayList<>();
 	@OneToMany
 	private List<Action> actionLst = new ArrayList<Action>();
@@ -40,6 +40,7 @@ public class Potager {
 	public String toString() {
 		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
 				+ ", carreLst=" + carreLst + ", actions=" + actionLst +"]";
+
 	}
 	
 	

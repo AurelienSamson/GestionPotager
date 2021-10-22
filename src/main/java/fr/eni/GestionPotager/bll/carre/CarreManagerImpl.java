@@ -30,7 +30,8 @@ public class CarreManagerImpl implements CarreManager {
 	@Override
 	@Transactional
 	public void addCarre(Carre carre, Potager potager) throws CarreManagerException {
-		if (daoPotager.findByNom(potager.getNom()).size()==0) {
+
+		if (daoPotager.findByNom(potager.getNom()).isEmpty()) {
 			throw new CarreManagerException("Le potager renseigné n'existe pas.");
 		}
 		for (Carre carreVerif : potager.getCarreLst()) {
@@ -51,11 +52,11 @@ public class CarreManagerImpl implements CarreManager {
 	@Override
 	@Transactional
 	public void updateCarre(Carre carre) throws CarreManagerException {
-		if(carre.getPotager() == null) {
+		if (carre.getPotager() == null) {
 			throw new CarreManagerException("Un carré doit forcément appartenir à un potager.");
 		}
 		carre.getPotager().getCarreLst().remove(carre.getIdCarre());
-		
+
 		for (Carre carreVerif : carre.getPotager().getCarreLst()) {
 			totalSurface += carreVerif.getSurface();
 		}
