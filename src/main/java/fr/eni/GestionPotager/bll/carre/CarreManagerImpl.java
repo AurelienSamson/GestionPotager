@@ -7,8 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
+import fr.eni.GestionPotager.bo.Plante;
 import fr.eni.GestionPotager.bo.Potager;
+import fr.eni.GestionPotager.dal.ActionDAO;
 import fr.eni.GestionPotager.dal.CarreDAO;
 import fr.eni.GestionPotager.dal.PlanteDAO;
 import fr.eni.GestionPotager.dal.PotagerDAO;
@@ -24,6 +27,9 @@ public class CarreManagerImpl implements CarreManager {
 
 	@Autowired
 	private PlanteDAO daoPlante;
+	
+	@Autowired
+	private ActionDAO daoAction;
 
 	private int totalSurface = 0;
 
@@ -79,6 +85,42 @@ public class CarreManagerImpl implements CarreManager {
 	@Override
 	public List<Carre> getAllCarre() {
 		return (List<Carre>) dao.findAll();
+	}
+
+	@Override
+	public List<Plante> getAllPlanteByCarre(Carre carre) {
+		return dao.findById(carre.getIdCarre()).get().getLstPlante();
+	}
+
+	@Override
+	public void addPlanteToCarre(Plante plante, Carre carre) {
+		carre.getLstPlante().add(plante);
+		dao.save(carre);
+	}
+
+	@Override
+	public void deletePlanteToCarre(Plante plante, Carre carre) {
+		carre.getLstPlante().remove(plante);
+		dao.save(carre);
+	}
+
+	@Override
+	public void addAction(Carre carre, Action action) {
+		carre.getActionLst().add(action);
+		daoAction.save(action);
+		dao.save(carre);		
+	}
+	
+	@Override
+	public void deleteAction(Carre carre, Action action) {
+		carre.getActionLst().remove(action);
+		daoAction.delete(action);
+		dao.save(carre);		
+	}
+
+	@Override
+	public List<Action> getAllActionByCarre(Carre carre) {
+		return dao.findById(carre.getIdCarre()).get().getActionLst();
 	}
 
 }

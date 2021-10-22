@@ -60,4 +60,17 @@ public class PotagerManagerImpl implements PotagerManager {
 		daoPotager.save(potager);
 	}
 
+	@Override
+	public List<Action> getAllActionByPotager(Potager potager) {
+		return daoPotager.findById(potager.getIdPotager()).get().getActionLst();
+	}
+
+	@Override
+	public void deleteAction(Potager potager, Action action) {
+		potager.getActionLst().remove(action);
+		daoPotager.save(potager);
+	}
+	
+	
+
 }

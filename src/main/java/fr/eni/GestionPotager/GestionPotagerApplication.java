@@ -42,7 +42,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		potagerManager.getAllPotager().forEach(System.out::println);
 		System.out.println("Tous les carrés d'un potager: ______________");
 		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
-		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré", "Quimper"));
+		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré"));
 		System.out.println("Affichage des actions d'un potager: ________");
 		p1.getActionLst().forEach(System.out::println);
 

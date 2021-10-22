@@ -9,5 +9,4 @@ import fr.eni.GestionPotager.bo.Potager;
 
 public interface CarreDAO extends CrudRepository<Carre, Integer> {
 
-	
 }
