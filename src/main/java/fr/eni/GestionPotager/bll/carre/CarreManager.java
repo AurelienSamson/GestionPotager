@@ -13,10 +13,6 @@ public interface CarreManager {
 	public void updateCarre(Carre carre, Potager potager) throws CarreManagerException;
 	public void deleteCarre(Carre carre);
 	public List<Carre> getAllCarre();
-	//Gestion des plantes dans un carre
-	public List<Plante> getAllPlanteByCarre(Carre carre);
-	public void addPlanteToCarre(Plante plante, Carre carre);
-	public void deletePlanteToCarre(Plante plante, Carre carre);
 	//Gestion des actions d'un carre
 	public List<Action> getAllActionByCarre(Carre carre);
 	public void addAction(Carre carre, Action action);

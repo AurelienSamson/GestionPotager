@@ -95,23 +95,6 @@ public class CarreManagerImpl implements CarreManager {
 	}
 
 	@Override
-	public List<Plante> getAllPlanteByCarre(Carre carre) {
-		return dao.findById(carre.getIdCarre()).get().getLstPlante();
-	}
-
-	@Override
-	public void addPlanteToCarre(Plante plante, Carre carre) {
-		carre.getLstPlante().add(plante);
-		dao.save(carre);
-	}
-
-	@Override
-	public void deletePlanteToCarre(Plante plante, Carre carre) {
-		carre.getLstPlante().remove(plante);
-		dao.save(carre);
-	}
-
-	@Override
 	public void addAction(Carre carre, Action action) {
 		carre.getActionLst().add(action);
 		daoAction.save(action);
