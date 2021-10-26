@@ -18,13 +18,11 @@ public class Action {
 	private int idAction;
 	private LocalDate date;
 	private String evenement;
-	private String lieu;
 	
-	public Action(LocalDate date, String evenement, String lieu) {
+	public Action(LocalDate date, String evenement) {
 		super();
 		this.date = date;
 		this.evenement = evenement;
-		this.lieu = lieu;
 	}
 	
 	

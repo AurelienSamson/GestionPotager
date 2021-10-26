@@ -61,19 +61,23 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		}
 		
 
+
+
 //		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",100,"Quimper");
 //		potagerManager.addPotager(p1);
 //		carreManager.addCarre(new Carre(p1,10, "Argileux", "Plein soleil"),p1);
 //		carreManager.addCarre(new Carre(p1, 10, "Sableux", "ESE"), p1);
 //		System.out.println("Tous les potagers: _____________________");
 //		potagerManager.getAllPotager().forEach(System.out::println);
-//
-//		System.out.println("Tous les carrés d'un potager: ______________");
+//		System.out.println("Tous les carr�s d'un potager: ______________");
 //		potagerManager.getAllcarreByPotager(p1).forEach(System.out::println);
-//		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carré", "Quimper"));
+//		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carr�"));
 //		System.out.println("Affichage des actions d'un potager: ________");
 //		p1.getActionLst().forEach(System.out::println);
-	
+
+
+
+
 
 	}
 
