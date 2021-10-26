@@ -16,28 +16,30 @@ public class PlanteManagerImpl implements PlanteManager {
 	private boolean flag = false;
 	
 	@Override
-	public void addPlante(Plante plante) {
+	public void addPlante(Plante plante) throws PlanteManagerException {
 		
 		for (Plante plantes : getAllPlante()) {
 			if(plante.getNom().equals(plantes.getNom())&& plante.getVariete().equals(plantes.getVariete())) {
 				flag=true;
 			}
 		}
-		if(flag==false) {
-			daoPlante.save(plante);
+		if(flag==true) {
+			throw new PlanteManagerException("Cette plante existe déjà.");
 		}
+		daoPlante.save(plante);
 	}
 
 	@Override
-	public void updatePlante(Plante plante) {
+	public void updatePlante(Plante plante) throws PlanteManagerException {
 		for (Plante plantes : getAllPlante()) {
 			if(plante.getNom().equals(plantes.getNom())&& plante.getVariete().equals(plantes.getVariete())) {
 				flag=true;
 			}
 		}
-		if(flag==false) {
-			daoPlante.save(plante);
+		if(flag==true) {
+			throw new PlanteManagerException("Cette plante existe déjà.");
 		}
+		daoPlante.save(plante);
 	}
 
 	@Override

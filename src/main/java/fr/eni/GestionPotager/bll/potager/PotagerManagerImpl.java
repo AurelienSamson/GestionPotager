@@ -48,10 +48,10 @@ public class PotagerManagerImpl implements PotagerManager {
 		return (List<Potager>) daoPotager.findAll();
 	}
 
-	@Override
-	public List<Carre> getAllcarreByPotager(Potager potager) {
-		return potager.getCarreLst();
-	}
+//	@Override
+//	public List<Carre> getAllcarreByPotager(Potager potager) {
+//		return potager.getCarreLst();
+//	}
 
 	@Override
 	public void addAction(Potager potager, Action action) {

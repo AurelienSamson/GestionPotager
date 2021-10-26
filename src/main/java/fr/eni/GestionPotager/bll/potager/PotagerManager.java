@@ -12,6 +12,6 @@ public interface PotagerManager {
 	public void upadtePotager(Potager potager);
 	public void deletePotager( Potager potager);
 	public List<Potager> getAllPotager();
-	public List<Carre> getAllcarreByPotager(Potager potager);
+//	public List<Carre> getAllcarreByPotager(Potager potager);
 	public void addAction(Potager potager, Action action);
 }

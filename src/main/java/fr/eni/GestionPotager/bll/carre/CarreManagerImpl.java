@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
 import fr.eni.GestionPotager.dal.CarreDAO;
-import fr.eni.GestionPotager.dal.PlanteDAO;
+import fr.eni.GestionPotager.dal.PlanteInCarreDAO;
 import fr.eni.GestionPotager.dal.PotagerDAO;
 
 @Service
@@ -23,7 +23,7 @@ public class CarreManagerImpl implements CarreManager {
 	private CarreDAO dao;
 
 	@Autowired
-	private PlanteDAO daoPlante;
+	private PlanteInCarreDAO daoPlanteInCarre;
 
 	private int totalSurface = 0;
 
@@ -34,15 +34,17 @@ public class CarreManagerImpl implements CarreManager {
 		if (daoPotager.findByNom(potager.getNom()).isEmpty()) {
 			throw new CarreManagerException("Le potager renseigné n'existe pas.");
 		}
-		for (Carre carreVerif : potager.getCarreLst()) {
-			totalSurface += carreVerif.getSurface();
+		for (Carre carreVerif : dao.findAll()) {
+			if(carreVerif.getPotager().equals(potager)) {
+				totalSurface += carreVerif.getSurface();
+			}
 		}
 		if (totalSurface + carre.getSurface() > potager.getSurface()) {
 			throw new CarreManagerException(
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
 
-		potager.getCarreLst().add(carre);
+//		potager.getCarreLst().add(carre);
 		dao.save(carre);
 		daoPotager.save(potager);
 
@@ -50,20 +52,22 @@ public class CarreManagerImpl implements CarreManager {
 
 	@Override
 	@Transactional
-	public void updateCarre(Carre carre) throws CarreManagerException {
+	public void updateCarre(Carre carre, Potager potager) throws CarreManagerException {
 		if (carre.getPotager() == null) {
 			throw new CarreManagerException("Un carré doit forcément appartenir à un potager.");
 		}
-		carre.getPotager().getCarreLst().remove(carre.getIdCarre());
+//		carre.getPotager().getCarreLst().remove(carre.getIdCarre());
 
-		for (Carre carreVerif : carre.getPotager().getCarreLst()) {
-			totalSurface += carreVerif.getSurface();
+		for (Carre carreVerif : dao.findAll()) {
+			if(carreVerif.getPotager().equals(potager)) {
+				totalSurface += carreVerif.getSurface();
+			}
 		}
 		if (totalSurface + carre.getSurface() < carre.getPotager().getSurface()) {
 			throw new CarreManagerException(
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
-		carre.getPotager().getCarreLst().add(carre);
+//		carre.getPotager().getCarreLst().add(carre);
 		dao.save(carre);
 
 	}
@@ -71,7 +75,7 @@ public class CarreManagerImpl implements CarreManager {
 	@Override
 	@Transactional
 	public void deleteCarre(Carre carre) {
-		daoPlante.deleteAll(carre.getLstPlante());
+//		daoPlanteInCarre.deleteAll(carre.getPlanteInCarreLst());
 		dao.delete(carre);
 	}
 

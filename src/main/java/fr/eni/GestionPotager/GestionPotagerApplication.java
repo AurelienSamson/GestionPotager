@@ -11,10 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
 import fr.eni.GestionPotager.bll.carre.CarreManagerException;
+import fr.eni.GestionPotager.bll.plante.PlanteManager;
+import fr.eni.GestionPotager.bll.planteInCarre.PlanteInCarreManager;
 //import fr.eni.GestionPotager.bll.carre.CarreManagerException;
 import fr.eni.GestionPotager.bll.potager.PotagerManager;
-import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
+import fr.eni.GestionPotager.bo.Plante;
+import fr.eni.GestionPotager.bo.PlanteInCarre;
 import fr.eni.GestionPotager.bo.Potager;
 
 @SpringBootApplication
@@ -25,6 +28,12 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	
 	@Autowired
 	CarreManager carreManager;
+	
+	@Autowired
+	PlanteManager planteManager;
+	
+	@Autowired
+	PlanteInCarreManager planteInCarreManager;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPotagerApplication.class, args);
@@ -37,9 +46,16 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
 		
 		Carre carre = new Carre(potager, 25, "humide", "Soleil");
+		Plante patate = new Plante("Patate", "Pomme de tere", "Patate nouvelle", 5);
+		PlanteInCarre plantDePatate1 = new PlanteInCarre(carre, patate, 10, LocalDate.now(), LocalDate.now().plusDays(60));
+		
 		try {
 			potagerManager.addPotager(potager);
 			carreManager.addCarre(carre, potager);
+			planteManager.addPlante(patate);
+			planteInCarreManager.addPlanteInCarre(plantDePatate1, carre);
+			
+			
 		} catch (CarreManagerException e) {
 			System.out.println(e.getMessage());
 		}

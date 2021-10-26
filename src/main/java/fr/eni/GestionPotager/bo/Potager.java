@@ -23,8 +23,8 @@ public class Potager {
 	private String nom;
 	private int surface;
 	private String ville;
-	@OneToMany(mappedBy="idCarre")
-	private List<Carre> carreLst = new ArrayList<>();
+//	@OneToMany(mappedBy="idCarre")
+//	private List<Carre> carreLst = new ArrayList<>();
 	@OneToMany
 	private List<Action> actionLst = new ArrayList<Action>();
 	
@@ -38,8 +38,8 @@ public class Potager {
 
 	@Override
 	public String toString() {
-		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "m² , ville=" + ville
-				+ ", carreLst=" + carreLst + ", actions=" + actionLst +"]";
+		return "Potager [localisation=" + localisation + ", nom=" + nom + ", surface=" + surface+ "mï¿½ , ville=" + ville
+				+ ", actions=" + actionLst +"]";
 
 	}
 	

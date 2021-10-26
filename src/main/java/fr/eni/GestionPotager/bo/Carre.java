@@ -20,13 +20,13 @@ public class Carre {
 	@Id
 	@GeneratedValue
 	private int idCarre;
-	@ManyToOne
-	private Potager potager;
 	private int surface;
 	private String typeSol;
 	private String typeExpo;
-	@OneToMany(mappedBy="idPlante")
-	private List<Plante> lstPlante = new ArrayList<>();
+	@ManyToOne
+	private Potager potager;
+//	@OneToMany(mappedBy="idCarre")
+//	private List<PlanteInCarre> planteInCarreLst = new ArrayList<>();
 	@OneToMany
 	private List<Action> actionLst = new ArrayList<Action>();
 	
@@ -41,7 +41,7 @@ public class Carre {
 	@Override
 	public String toString() {
 		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
-				+ ", lstPlante=" + lstPlante + ", actions=" + actionLst + "]";
+				 + ", actions=" + actionLst + "]";
 	}
 	
 	
