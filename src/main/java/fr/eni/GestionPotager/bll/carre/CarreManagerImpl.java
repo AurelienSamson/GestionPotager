@@ -121,4 +121,9 @@ public class CarreManagerImpl implements CarreManager {
 		return dao.findById(carre.getIdCarre()).get().getActionLst();
 	}
 
+	@Override
+	public Carre getCarreById(int id) {
+		return dao.findCarreById(id);
+	}
+
 }
