@@ -60,4 +60,9 @@ public class PlanteManagerImpl implements PlanteManager {
 		return (List<Plante>) dao.findAll();
 	}
 
+	@Override
+	public Plante GetPlanteById(int id) {
+		return dao.findById(id).get();
+	}
+
 }

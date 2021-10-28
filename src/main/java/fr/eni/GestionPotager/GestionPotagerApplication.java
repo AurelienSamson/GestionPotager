@@ -53,7 +53,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 			potagerManager.addPotager(potager);
 			carreManager.addCarre(carre, potager);
 			planteManager.addPlante(patate);
-			planteInCarreManager.addPlanteInCarre(plantDePatate1, carre);
+			planteInCarreManager.addPlanteInCarre(plantDePatate1);
 			
 			
 		} catch (CarreManagerException e) {
