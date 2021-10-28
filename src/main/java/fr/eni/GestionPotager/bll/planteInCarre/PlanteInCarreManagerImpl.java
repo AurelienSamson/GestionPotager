@@ -28,7 +28,7 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 
 	@Override
 	@Transactional
-	public void addPlanteInCarre(PlanteInCarre plant, Carre carre) {
+	public void addPlanteInCarre(PlanteInCarre plant) {
 //		carre.getPlanteInCarreLst().add(plant);
 //		carreDAO.save(carre);
 		dao.save(plant);
@@ -47,6 +47,21 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 	public void deletePlanteInCarre(PlanteInCarre plant) {
 		dao.delete(plant);
 		
+	}
+
+	@Override
+	public List<PlanteInCarre> getAllByCarre(Carre carre) {
+		return dao.findPlanteByCarre(carre.getIdCarre());
+	}
+
+	@Override
+	public List<PlanteInCarre> getAllByCarreId(int id) {
+		return dao.findPlanteByCarre(id);
+	}
+
+	@Override
+	public PlanteInCarre findById(int id) {
+		return dao.findById(id).get();
 	}
 
 }
