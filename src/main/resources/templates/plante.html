@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Potagers</title>
+</head>
+<body>
+	<div th:switch="${potagers}">
+		<h2 th:case="null">Pas de potager pour l'instant !</h2>
+		<div th:case="*">
+			<h2>Mes Potagers</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Potager</th>
+						<th>Effacer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="potager : ${potagers}">
+						<td th:text="${potager.nom}"></td>
+						<td><a
+							th:href="@{/potagers/delete/{id}(id=${potager.idPotager})}">Effacer</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="/potagers/add">Ajouter un potager</a>
+		</p>
+	</div>
+</body>
+</html>

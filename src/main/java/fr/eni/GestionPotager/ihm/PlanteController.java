@@ -16,7 +16,7 @@ import fr.eni.GestionPotager.bll.potager.PotagerManagerException;
 import fr.eni.GestionPotager.bo.Potager;
 
 @Controller
-public class PotagerController {
+public class PlanteController {
 	
 	@Autowired
 	PotagerManager manager;

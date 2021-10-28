@@ -10,4 +10,5 @@ public interface PlanteManager {
 	public void updatePlante(Plante plante) throws PlanteManagerException;
 	public void deletePlante(Plante plante) throws PlanteManagerException;
 	public List<Plante> getAllPlante();
+	public Plante GetPlanteById(int id);
 }
