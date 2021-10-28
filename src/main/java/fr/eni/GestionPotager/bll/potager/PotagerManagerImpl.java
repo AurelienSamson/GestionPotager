@@ -73,6 +73,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		return (List<Potager>) dao.findAll();
 	}
 
+
 //	@Override
 //	public List<Carre> getAllcarreByPotager(Potager potager) {
 //		return potager.getCarreLst();
@@ -96,6 +97,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	public void deleteAction(Potager potager, Action action) {
 		potager.getActionLst().remove(action);
 		dao.save(potager);
+	}
+
+	@Override
+	public Potager getPotagerById(int id) {
+		return dao.findPotagerById(id);
 	}
 	
 	

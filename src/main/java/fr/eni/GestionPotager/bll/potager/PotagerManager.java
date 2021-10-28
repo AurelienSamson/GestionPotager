@@ -13,6 +13,7 @@ public interface PotagerManager {
 	public void upadtePotager(Potager potager) throws PotagerManagerException;
 	public void deletePotager( Potager potager) throws PotagerManagerException;
 	public List<Potager> getAllPotager();
+	public Potager getPotagerById(int id);
 //	public List<Carre> getAllcarreByPotager(Potager potager);
 	public void addAction(Potager potager, Action action);
 	public void deleteAction(Potager potager, Action action);
