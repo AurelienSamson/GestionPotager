@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
 import fr.eni.GestionPotager.bll.carre.CarreManagerException;
+import fr.eni.GestionPotager.bll.potager.PotagerManager;
 import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.Potager;
 
@@ -21,10 +22,13 @@ public class CarreController {
 	@Autowired
 	CarreManager manager;
 	
+	@Autowired
+	PotagerManager managerP;
+	
 	@GetMapping("/carres/index")
 	public String listCarre(Model model) {
 		model.addAttribute("carres", manager.getAllCarre());
-		return "index";
+		return "lstCarre";
 	}
 	
 	@GetMapping("/carres/delete/{id}")
@@ -35,7 +39,8 @@ public class CarreController {
 	}
 	
 	@GetMapping("/carres/add")
-	public String entreSaisie(Carre carre) {
+	public String entreSaisie(Carre carre, Model model) {
+		model.addAttribute("potagers", managerP.getAllPotager());
 		return "addCarre";
 	}
 	

@@ -13,14 +13,13 @@
     <input type="text" th:field="*{typeSol}" id="typeSol" placeholder="pauvre">
     <span th:if="${#fields.hasErrors('typeSol')}" th:errors="*{typeSol}"></span>
     <label for="typeExpo">Type d'exposition</label>
-    <input type="number" th:field="*{typeExpo}" id="typeExpo" placeholder="Ensoleillé">
+    <input type="text" th:field="*{typeExpo}" id="typeExpo" placeholder="Ensoleillé">
     <span th:if="${#fields.hasErrors('typeExpo')}" th:errors="*{typeExpo}"></span>
-    <label for="potager">Potager</label>
-    <select th:field="*{carres}">
-    	<option value="default">Select a country</option>
-    	<option th:each="potager : ${potagers}" th:value="${potager.nom }"th:text="${potager.nom }"/>
-    </select>
-    <input type="submit" value="Ajouter le carré">   
+    <label for="potagerLabel">Potager</label>
+    <select th:field="*{potager}">
+		<option th:each="p : ${potagers}" th:value="${p.idPotager}" th:text="${p.nom}"></option>
+	</select>
+    <input type="submit" value="Ajouter le carré">
 </form>
 </body>
 </html>
