@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
-import fr.eni.GestionPotager.bo.Plante;
 import fr.eni.GestionPotager.bo.Potager;
 import fr.eni.GestionPotager.dal.ActionDAO;
 import fr.eni.GestionPotager.dal.CarreDAO;
@@ -78,14 +77,22 @@ public class CarreManagerImpl implements CarreManager {
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
 //		carre.getPotager().getCarreLst().add(carre);
+		
+		if(potager != carre.getPotager()) {
+			daoPotager.save(potager);
+			carre.setPotager(potager);
+		}
 		dao.save(carre);
 
 	}
 
 	@Override
 	@Transactional
-	public void deleteCarre(Carre carre) {
+	public void deleteCarre(Carre carre) throws CarreManagerException {
 //		daoPlanteInCarre.deleteAll(carre.getPlanteInCarreLst());
+		if(dao.findById(carre.getIdCarre()) == null) {
+			throw new CarreManagerException("Ce carré n'existe pas.");
+		}
 		dao.delete(carre);
 	}
 
@@ -102,6 +109,7 @@ public class CarreManagerImpl implements CarreManager {
 	}
 	
 	@Override
+	@Transactional
 	public void deleteAction(Carre carre, Action action) {
 		carre.getActionLst().remove(action);
 		daoAction.delete(action);

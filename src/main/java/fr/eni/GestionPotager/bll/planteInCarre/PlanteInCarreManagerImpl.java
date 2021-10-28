@@ -2,6 +2,8 @@ package fr.eni.GestionPotager.bll.planteInCarre;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,7 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 	}
 
 	@Override
+	@Transactional
 	public void addPlanteInCarre(PlanteInCarre plant, Carre carre) {
 //		carre.getPlanteInCarreLst().add(plant);
 //		carreDAO.save(carre);
@@ -33,12 +36,14 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 	}
 
 	@Override
+	@Transactional
 	public void updatePlanteInCarre(PlanteInCarre plant) {
 		dao.save(plant);
 		
 	}
 
 	@Override
+	@Transactional
 	public void deletePlanteInCarre(PlanteInCarre plant) {
 		dao.delete(plant);
 		

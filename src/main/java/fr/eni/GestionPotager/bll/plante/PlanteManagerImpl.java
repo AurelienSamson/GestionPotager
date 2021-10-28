@@ -2,6 +2,8 @@ package fr.eni.GestionPotager.bll.plante;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,12 @@ import fr.eni.GestionPotager.dal.PlanteDAO;
 public class PlanteManagerImpl implements PlanteManager {
 
 	@Autowired
-	PlanteDAO daoPlante;
+	PlanteDAO dao;
 	
 	private boolean flag = false;
 	
 	@Override
+	@Transactional
 	public void addPlante(Plante plante) throws PlanteManagerException {
 		
 		for (Plante plantes : getAllPlante()) {
@@ -26,10 +29,11 @@ public class PlanteManagerImpl implements PlanteManager {
 		if(flag==true) {
 			throw new PlanteManagerException("Cette plante existe déjà.");
 		}
-		daoPlante.save(plante);
+		dao.save(plante);
 	}
 
 	@Override
+	@Transactional
 	public void updatePlante(Plante plante) throws PlanteManagerException {
 		for (Plante plantes : getAllPlante()) {
 			if(plante.getNom().equals(plantes.getNom())&& plante.getVariete().equals(plantes.getVariete())) {
@@ -39,17 +43,21 @@ public class PlanteManagerImpl implements PlanteManager {
 		if(flag==true) {
 			throw new PlanteManagerException("Cette plante existe déjà.");
 		}
-		daoPlante.save(plante);
+		dao.save(plante);
 	}
 
 	@Override
-	public void deletePlante(Plante plante) {
-		daoPlante.delete(plante);		
+	@Transactional
+	public void deletePlante(Plante plante) throws PlanteManagerException {
+		if(dao.findById(plante.getIdPlante()) == null) {
+			throw new PlanteManagerException("Cette plante n'existe pas.");
+		}
+		dao.delete(plante);		
 	}
 
 	@Override
 	public List<Plante> getAllPlante() {
-		return (List<Plante>) daoPlante.findAll();
+		return (List<Plante>) dao.findAll();
 	}
 
 }

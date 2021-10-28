@@ -9,9 +9,9 @@ import fr.eni.GestionPotager.bo.Potager;
 public interface PotagerManager {
 
 	//CRUD de base
-	public void addPotager(Potager potager);
-	public void upadtePotager(Potager potager);
-	public void deletePotager( Potager potager);
+	public void addPotager(Potager potager) throws PotagerManagerException;
+	public void upadtePotager(Potager potager) throws PotagerManagerException;
+	public void deletePotager( Potager potager) throws PotagerManagerException;
 	public List<Potager> getAllPotager();
 //	public List<Carre> getAllcarreByPotager(Potager potager);
 	public void addAction(Potager potager, Action action);
