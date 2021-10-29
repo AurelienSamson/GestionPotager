@@ -20,7 +20,7 @@ public class Carre {
 	@Id
 	@GeneratedValue
 	private int idCarre;
-	private int surface;
+	private int surfaceCarre;
 	private String typeSol;
 	private String typeExpo;
 	@ManyToOne
@@ -33,14 +33,14 @@ public class Carre {
 	public Carre(Potager potager, int surface, String typeSol, String typeExpo) {
 		super();
 		this.potager = potager;
-		this.surface = surface;
+		this.surfaceCarre = surface;
 		this.typeSol = typeSol;
 		this.typeExpo = typeExpo;
 	}
 
 	@Override
 	public String toString() {
-		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
+		return "Carre [potager=" + potager.getNom() + ", surface=" + surfaceCarre + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
 				 + ", actions=" + actionLst + "]";
 	}
 	

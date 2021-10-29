@@ -5,10 +5,8 @@
 <title>Potagers</title>
 </head>
 <body>
-	<div th:switch="${plantees}">
-		<h2 th:case="null">Pas de plantes pour l'instant !</h2>
-		<h2 th:case="${#lists.isEmpty(plantees)}">Pas de plantes pour l'instant !</h2>
-		<div th:case="*">
+	<div th:switch="${error}">
+		<div th:case="null">
 			<h2>Mes Plantes</h2>
 			<table>
 				<thead>
@@ -31,10 +29,14 @@
 					</tr>
 				</tbody>
 			</table>
+			<p>
+				<a href="/planteCarre/add">Ajouter une plante</a>
+			</p>
+			<p>
+				<a th:href="@{/carres/{id}(id=${carre.potager.idPotager})}">Retour au carré</a>
+			</p>
 		</div>
-		<p>
-			<a href="/planteCarre/add">Ajouter une plante</a>
-		</p>
+		<h2 th:case="*"><label th:text="${error}"></h2>
 	</div>
 </body>
 </html>

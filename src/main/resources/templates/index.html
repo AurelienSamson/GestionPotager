@@ -18,7 +18,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="potager : ${potagers}">
-						<td th:text="${potager.nom}"></td>
+						<td><a
+							th:text="${potager.nom}" th:href="@{/carres/{id}(id=${potager.idPotager})}"></a></td>
 						<td><a
 							th:href="@{/potagers/delete/{id}(id=${potager.idPotager})}">Effacer</a></td>
 					</tr>

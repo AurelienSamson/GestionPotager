@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +28,9 @@ public class PlanteInCarre {
 	private Plante plante;
 	
 	private int quantite;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateMeP;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateRecolta;
 	
 	public PlanteInCarre(Carre carre, Plante plante, int quantite, LocalDate dateMeP, LocalDate dateRecolta) {

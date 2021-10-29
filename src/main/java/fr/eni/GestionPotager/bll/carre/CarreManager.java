@@ -13,6 +13,7 @@ public interface CarreManager {
 	public void deleteCarre(Carre carre) throws CarreManagerException;
 	public List<Carre> getAllCarre();
 	public Carre getCarreById(int id);
+	public List<Carre> getCarresByPotagerId(int id);
 	//Gestion des actions d'un carre
 	public List<Action> getAllActionByCarre(Carre carre);
 	public void addAction(Carre carre, Action action);

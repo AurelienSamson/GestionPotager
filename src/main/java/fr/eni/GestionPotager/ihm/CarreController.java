@@ -31,6 +31,12 @@ public class CarreController {
 		return "lstCarre";
 	}
 	
+	@GetMapping("/carres/{id}")
+	public String listCarre(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("carres", manager.getCarresByPotagerId(id));
+		return "lstCarre";
+	}
+	
 	@GetMapping("/carres/delete/{id}")
 	public String deleteCarre(@PathVariable("id") Integer id, Model model) throws CarreManagerException {	
 		manager.deleteCarre(manager.getCarreById(id));

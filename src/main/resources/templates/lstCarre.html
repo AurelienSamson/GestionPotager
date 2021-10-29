@@ -20,7 +20,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="carre : ${carres}">
-						<td th:text="${carre.surface}"></td>
+						<td><a th:href="@{/carres/{id}/plantes(id=${carre.idCarre})}">Détails</a></td>
+						<td th:text="${carre.surfaceCarre}"></td>
 						<td th:text="${carre.typeSol}"></td>
 						<td th:text="${carre.typeExpo}"></td>
 						<td><a
@@ -31,6 +32,9 @@
 		</div>
 		<p>
 			<a href="/carres/add">Ajouter un carré</a>
+		</p>
+		<p>
+			<a href="/potagers/index">Retour aux potagers</a>
 		</p>
 	</div>
 </body>

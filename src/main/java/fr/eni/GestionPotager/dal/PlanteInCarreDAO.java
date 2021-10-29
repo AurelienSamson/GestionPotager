@@ -13,6 +13,9 @@ public interface PlanteInCarreDAO extends CrudRepository<PlanteInCarre, Integer>
 	@Query("FROM PlanteInCarre p WHERE p.carre.idCarre =:id")
 	List<PlanteInCarre> findPlanteByCarre(@Param("id") int id);
 	
+	@Query("FROM PlanteInCarre p WHERE p.plante.idPlante =:id")
+	List<PlanteInCarre> findAllByPlanteId(@Param("id")int id);
+	
 	@Query("FROM PlanteInCarre WHERE idPlanteInCarre = :id")
 	Carre findPlanteInCarreById(@Param("id")int id);
 }

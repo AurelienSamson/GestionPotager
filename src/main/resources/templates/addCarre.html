@@ -6,9 +6,9 @@
 </head>
 <body>
 <form th:action="@{/carres/add}" th:object="${carre}" method="post">
-    <label for="surface">Surface</label>
-    <input type="number" th:field="*{surface}" id="surface" placeholder="25">
-    <span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
+    <label for="surfaceCarre">Surface</label>
+    <input type="number" th:field="*{surfaceCarre}" id="surfaceCarre" placeholder="25">
+    <span th:if="${#fields.hasErrors('surfaceCarre')}" th:errors="*{surfaceCarre}"></span>
     <label for="typeSol">Type de Sol</label>
     <input type="text" th:field="*{typeSol}" id="typeSol" placeholder="pauvre">
     <span th:if="${#fields.hasErrors('typeSol')}" th:errors="*{typeSol}"></span>
@@ -21,5 +21,8 @@
 	</select>
     <input type="submit" value="Ajouter le carré">
 </form>
+<p>
+	<a href="/potagers/index">Retour aux potagers</a>
+</p>
 </body>
 </html>

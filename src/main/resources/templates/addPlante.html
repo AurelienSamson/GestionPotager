@@ -18,7 +18,10 @@
     <label for="ville">Surface</label>
     <input type="number" th:field="*{surfaceOccupe}" id="surfaceOccupe" placeholder="1">
     <span th:if="${#fields.hasErrors('surfaceOccupe')}" th:errors="*{surfaceOccupe}"></span>
-    <input type="submit" value="Ajouter la plante">   
+    <input type="submit" value="Ajouter la plante">
 </form>
+<p>
+	<a href="/potagers/index">Retour aux potagers</a>
+</p>
 </body>
 </html>

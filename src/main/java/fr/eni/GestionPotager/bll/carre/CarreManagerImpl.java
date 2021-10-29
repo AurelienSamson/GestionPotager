@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.eni.GestionPotager.bo.Action;
 import fr.eni.GestionPotager.bo.Carre;
+import fr.eni.GestionPotager.bo.PlanteInCarre;
 import fr.eni.GestionPotager.bo.Potager;
 import fr.eni.GestionPotager.dal.ActionDAO;
 import fr.eni.GestionPotager.dal.CarreDAO;
@@ -44,18 +45,18 @@ public class CarreManagerImpl implements CarreManager {
 			throw new CarreManagerException("Le potager renseigné n'existe pas.");
 		}
 		for (Carre carreVerif : dao.findAll()) {
-			if(carreVerif.getPotager().equals(potager)) {
-				totalSurface += carreVerif.getSurface();
+			if(carreVerif.getPotager().getNom().equals(potager.getNom())) {
+				totalSurface += carreVerif.getSurfaceCarre();
 			}
 		}
-		if (totalSurface + carre.getSurface() > potager.getSurface()) {
+		if (totalSurface + carre.getSurfaceCarre() > potager.getSurface()) {
 			throw new CarreManagerException(
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
 
 //		potager.getCarreLst().add(carre);
 		dao.save(carre);
-		daoPotager.save(potager);
+//		daoPotager.save(potager);
 
 	}
 
@@ -69,10 +70,10 @@ public class CarreManagerImpl implements CarreManager {
 
 		for (Carre carreVerif : dao.findAll()) {
 			if(carreVerif.getPotager().equals(potager)) {
-				totalSurface += carreVerif.getSurface();
+				totalSurface += carreVerif.getSurfaceCarre();
 			}
 		}
-		if (totalSurface + carre.getSurface() < carre.getPotager().getSurface()) {
+		if (totalSurface + carre.getSurfaceCarre() < carre.getPotager().getSurface()) {
 			throw new CarreManagerException(
 					"La surface du carré est trop grande, il n'y a pas assez de place dans le potager.");
 		}
@@ -92,6 +93,9 @@ public class CarreManagerImpl implements CarreManager {
 //		daoPlanteInCarre.deleteAll(carre.getPlanteInCarreLst());
 		if(dao.findById(carre.getIdCarre()) == null) {
 			throw new CarreManagerException("Ce carré n'existe pas.");
+		}
+		for (PlanteInCarre planteInCarre : daoPlanteInCarre.findPlanteByCarre(carre.getIdCarre())) {
+			daoPlanteInCarre.delete(planteInCarre);
 		}
 		dao.delete(carre);
 	}
@@ -124,6 +128,11 @@ public class CarreManagerImpl implements CarreManager {
 	@Override
 	public Carre getCarreById(int id) {
 		return dao.findCarreById(id);
+	}
+
+	@Override
+	public List<Carre> getCarresByPotagerId(int id) {
+		return dao.findAllByIdPotager(id);
 	}
 
 }
