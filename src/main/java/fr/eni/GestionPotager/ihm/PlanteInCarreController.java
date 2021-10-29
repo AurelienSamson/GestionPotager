@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.annotation.SessionScope;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
 import fr.eni.GestionPotager.bll.plante.PlanteManager;
@@ -18,6 +19,7 @@ import fr.eni.GestionPotager.bo.Plante;
 import fr.eni.GestionPotager.bo.PlanteInCarre;
 
 @Controller
+@SessionScope
 public class PlanteInCarreController {
 
 	@Autowired
@@ -26,9 +28,13 @@ public class PlanteInCarreController {
 	@Autowired
 	CarreManager managerCarre;
 
-	@GetMapping("/carres/{id}/plantes")
-	public String listPlanteInCarre(@PathVariable("id") int id, Model model) {
-		model.addAttribute("plantees", manager.getAllByCarreId(id));
+	@Autowired
+	PlanteManager managerPlante;
+	
+	
+	@GetMapping("/carres/{idCarre}/plantes")
+	public String listPlanteInCarre(@PathVariable("idCarre") int idCarre, Model model) {
+		model.addAttribute("plantees", manager.getAllByCarreId(idCarre));
 		return "planteInCarre";
 	}
 
@@ -36,22 +42,22 @@ public class PlanteInCarreController {
 	public String deletePlante(@PathVariable("id") int id, Model model) throws PlanteManagerException {
 		manager.deletePlanteInCarre(manager.findById(id));
 
-		return "redirect:/plantes/index";
+		return "redirect:/carres/{idCarre}/plantes";
 	}
 
-	@GetMapping("/plantes/add")
-	public String entreSaisie(Plante plante) {
+	@GetMapping("/plantees/add")
+	public String entreSaisie(Plante plante, Model model) {
+		model.addAttribute("LstPlante", managerPlante.getAllPlante());
 		return "addPlanteInCarre";
 	}
 
-	@PostMapping("/plantes/add")
-	public String addPlanteInCarre(@Valid PlanteInCarre planteInCarre, BindingResult result, Model model)
-			throws PlanteManagerException {
+	@PostMapping("/plantees/add")
+	public String addPlanteInCarre(PlanteInCarre planteInCarre, BindingResult result, Model model) throws PlanteManagerException {
 		if (result.hasErrors()) {
 			return "addPlanteInCarre";
 		}
 		manager.addPlanteInCarre(planteInCarre);
-		return "redirect:/plantes/index"; // n'appelle pas l'html mais l'url
+		return "redirect:/carres/{idCarre}/plantes"; // n'appelle pas l'html mais l'url
 
 	}
 }

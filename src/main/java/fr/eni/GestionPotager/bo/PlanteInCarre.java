@@ -14,21 +14,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PlanteInCarre {
-	
+
 	@Id
 	@GeneratedValue
 	private int idPlanteInCarre;
-	
+
 	@ManyToOne
 	private Carre carre;
-	
+
 	@ManyToOne
 	private Plante plante;
-	
+
 	private int quantite;
 	private LocalDate dateMeP;
 	private LocalDate dateRecolta;
-	
+
 	public PlanteInCarre(Carre carre, Plante plante, int quantite, LocalDate dateMeP, LocalDate dateRecolta) {
 		super();
 		this.carre = carre;
@@ -37,9 +37,5 @@ public class PlanteInCarre {
 		this.dateMeP = dateMeP;
 		this.dateRecolta = dateRecolta;
 	}
-	
-	
-	
-	
-	
+
 }

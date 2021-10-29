@@ -17,30 +17,31 @@ import fr.eni.GestionPotager.bo.Potager;
 
 @Controller
 public class CarreController {
-	
+
 	@Autowired
 	CarreManager manager;
-	
+
 	@GetMapping("/carres/index")
 	public String listCarre(Model model) {
 		model.addAttribute("carres", manager.getAllCarre());
 		return "index";
 	}
-	
+
 	@GetMapping("/carres/delete/{id}")
-	public String deleteCarre(@PathVariable("id") Integer id, Model model) throws CarreManagerException {	
+	public String deleteCarre(@PathVariable("id") Integer id, Model model) throws CarreManagerException {
 		manager.deleteCarre(manager.getCarreById(id));
-		
-	    return "redirect:/carres/index";
+
+		return "redirect:/carres/index";
 	}
-	
+
 	@GetMapping("/carres/add")
 	public String entreSaisie(Carre carre) {
 		return "addCarre";
 	}
-	
+
 	@PostMapping("/carres/add")
-	public String addCarre(@Valid Potager potager, Carre carre, BindingResult result, Model model) throws CarreManagerException{
+	public String addCarre(@Valid Potager potager, Carre carre, BindingResult result, Model model)
+			throws CarreManagerException {
 		if (result.hasErrors()) {
 			return "addCarre";
 		}

@@ -17,10 +17,10 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 
 	@Autowired
 	PlanteInCarreDAO dao;
-	
+
 	@Autowired
 	CarreDAO carreDAO;
-	
+
 	@Override
 	public List<PlanteInCarre> getAll() {
 		return (List<PlanteInCarre>) dao.findAll();
@@ -32,31 +32,31 @@ public class PlanteInCarreManagerImpl implements PlanteInCarreManager {
 //		carre.getPlanteInCarreLst().add(plant);
 //		carreDAO.save(carre);
 		dao.save(plant);
-		
+
 	}
 
 	@Override
 	@Transactional
 	public void updatePlanteInCarre(PlanteInCarre plant) {
 		dao.save(plant);
-		
+
 	}
 
 	@Override
 	@Transactional
 	public void deletePlanteInCarre(PlanteInCarre plant) {
 		dao.delete(plant);
-		
+
 	}
 
 	@Override
 	public List<PlanteInCarre> getAllByCarre(Carre carre) {
-		return dao.findPlanteByCarre(carre.getIdCarre());
+		return dao.findPlanteByCarreId(carre.getIdCarre());
 	}
 
 	@Override
 	public List<PlanteInCarre> getAllByCarreId(int id) {
-		return dao.findPlanteByCarre(id);
+		return dao.findPlanteByCarreId(id);
 	}
 
 	@Override

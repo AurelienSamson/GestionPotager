@@ -25,16 +25,16 @@ public class GestionPotagerApplication implements CommandLineRunner {
 
 	@Autowired
 	PotagerManager potagerManager;
-	
+
 	@Autowired
 	CarreManager carreManager;
-	
+
 	@Autowired
 	PlanteManager planteManager;
-	
+
 	@Autowired
 	PlanteInCarreManager planteInCarreManager;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
@@ -42,26 +42,23 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		Potager potager = new Potager("2 bis avenue de la gare", "La Jardinière", 100, "Quimper");
-		
+
 		Carre carre = new Carre(potager, 25, "humide", "Soleil");
 		Plante patate = new Plante("Patate", "Pomme de tere", "Patate nouvelle", 5);
-		PlanteInCarre plantDePatate1 = new PlanteInCarre(carre, patate, 10, LocalDate.now(), LocalDate.now().plusDays(60));
-		
+		PlanteInCarre plantDePatate1 = new PlanteInCarre(carre, patate, 10, LocalDate.now(),
+				LocalDate.now().plusDays(60));
+
 		try {
 			potagerManager.addPotager(potager);
 			carreManager.addCarre(carre, potager);
 			planteManager.addPlante(patate);
 			planteInCarreManager.addPlanteInCarre(plantDePatate1);
-			
-			
+
 		} catch (CarreManagerException e) {
 			System.out.println(e.getMessage());
 		}
-		
-
-
 
 //		Potager p1 = new Potager("3 rue des lilas","Carre d'herbe",100,"Quimper");
 //		potagerManager.addPotager(p1);
@@ -74,10 +71,6 @@ public class GestionPotagerApplication implements CommandLineRunner {
 //		potagerManager.addAction(p1, new Action(LocalDate.now().plusDays(7), "Ajout d'un carr�"));
 //		System.out.println("Affichage des actions d'un potager: ________");
 //		p1.getActionLst().forEach(System.out::println);
-
-
-
-
 
 	}
 

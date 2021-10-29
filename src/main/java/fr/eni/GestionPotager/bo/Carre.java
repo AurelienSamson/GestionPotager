@@ -29,7 +29,7 @@ public class Carre {
 //	private List<PlanteInCarre> planteInCarreLst = new ArrayList<>();
 	@OneToMany
 	private List<Action> actionLst = new ArrayList<Action>();
-	
+
 	public Carre(Potager potager, int surface, String typeSol, String typeExpo) {
 		super();
 		this.potager = potager;
@@ -40,10 +40,8 @@ public class Carre {
 
 	@Override
 	public String toString() {
-		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo=" + typeExpo
-				 + ", actions=" + actionLst + "]";
+		return "Carre [potager=" + potager.getNom() + ", surface=" + surface + ", typeSol=" + typeSol + ", typeExpo="
+				+ typeExpo + ", actions=" + actionLst + "]";
 	}
-	
-	
-	
+
 }
