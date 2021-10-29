@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Carrés</title>
+</head>
+<body>
+	<div th:switch="${carres}">
+		<h2 th:case="null">Pas de potager pour l'instant !</h2>
+		<div th:case="*">
+			<h2>Mes Carrés</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Surface</th>
+						<th>Type de Sol</th>
+						<th>Type d'exposition</th>
+						<th>Effacer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="carre : ${carres}">
+						<td th:text="${carre.surface}"></td>
+						<td th:text="${carre.typeSol}"></td>
+						<td th:text="${carre.typeExpo}"></td>
+						<td><a
+							th:href="@{/carres/delete/{id}(id=${carre.idCarre})}">Effacer</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="/carres/add">Ajouter un carré</a>
+		</p>
+	</div>
+</body>
+</html>

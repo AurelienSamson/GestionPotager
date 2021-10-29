@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nouveau carré</title>
+</head>
+<body>
+<form th:action="@{/carres/add}" th:object="${carre}" method="post">
+    <label for="surface">Surface</label>
+    <input type="number" th:field="*{surface}" id="surface" placeholder="25">
+    <span th:if="${#fields.hasErrors('surface')}" th:errors="*{surface}"></span>
+    <label for="typeSol">Type de Sol</label>
+    <input type="text" th:field="*{typeSol}" id="typeSol" placeholder="pauvre">
+    <span th:if="${#fields.hasErrors('typeSol')}" th:errors="*{typeSol}"></span>
+    <label for="typeExpo">Type d'exposition</label>
+    <input type="text" th:field="*{typeExpo}" id="typeExpo" placeholder="Ensoleillé">
+    <span th:if="${#fields.hasErrors('typeExpo')}" th:errors="*{typeExpo}"></span>
+    <label for="potagerLabel">Potager</label>
+    <select th:field="*{potager}">
+		<option th:each="p : ${potagers}" th:value="${p.idPotager}" th:text="${p.nom}"></option>
+	</select>
+    <input type="submit" value="Ajouter le carré">
+</form>
+</body>
+</html>
