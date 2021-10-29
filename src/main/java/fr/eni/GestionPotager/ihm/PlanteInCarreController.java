@@ -39,12 +39,12 @@ public class PlanteInCarreController {
 		return "redirect:/plantes/index";
 	}
 
-	@GetMapping("/plantes/add")
+	@GetMapping("/planteCarre/add")
 	public String entreSaisie(Plante plante) {
 		return "addPlanteInCarre";
 	}
 
-	@PostMapping("/plantes/add")
+	@PostMapping("/planteCarre/add")
 	public String addPlanteInCarre(@Valid PlanteInCarre planteInCarre, BindingResult result, Model model)
 			throws PlanteManagerException {
 		if (result.hasErrors()) {
