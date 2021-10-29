@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nouvele plante</title>
+</head>
+<body>
+<form th:action="@{/plantees/add}" th:object="${PlanteInCarre}" method="post">
+
+	<input type="hidden" th:field="*{idCarre}" id="carre">
+    <label for="Lstplante">Plante</label>
+    <select id="Lstplante" name="Lstplante">
+    	<th:block th:each="plante : ${LstPlante}">
+    		<option value="${plante}"><p th:text="${plante.nom}"></option>
+    	</th:block>
+    </select>
+    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span> 
+    <label for="quantite">Quantité</label>
+    <input type="number" th:field="*{quantite}" id="quantite" >
+    <span th:if="${#fields.hasErrors('quantite')}" th:errors="*{quantite}"></span>
+    <label for="dateMep">Date de mise en Terre</label>
+    <input type="date" th:field="*{dateMeP}" id="dateMeP" >
+    <span th:if="${#fields.hasErrors('dateMeP')}" th:errors="*{dateMeP}"></span>
+    <label for="dateRecolta">Date estimé de recolte</label>
+    <input type="date" th:field="*{dateRecolta}" id="dateRecolta" >
+    <span th:if="${#fields.hasErrors('dateRecolta')}" th:errors="*{dateRecolta}"></span>
+    <input type="submit" value="Ajouter la plante dans le carre">   
+</form>
+</body>
+</html>

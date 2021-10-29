@@ -5,34 +5,35 @@
 <title>Potagers</title>
 </head>
 <body>
-	<div th:switch="${plantes}">
+	<div th:switch="${plantees}">
 		<h2 th:case="null">Pas de plantes pour l'instant !</h2>
+		<h2 th:case="${#lists.isEmpty(plantees)}">Pas de plantes pour l'instant !</h2>
 		<div th:case="*">
 			<h2>Mes Plantes</h2>
 			<table>
 				<thead>
 					<tr>
 						<th>Nom</th>
-						<th>Type</th>
-						<th>Variété</th>
-						<th>Surface occupée</th>
+						<th>Quantité</th>
+						<th>Date de mise en Terre</th>
+						<th>Date de récolte</th>
 						<th>Effacer</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="plante : ${plantes}">
-						<td th:text="${plante.nom}"></td>
-						<td th:text="${plante.type}"></td>
-						<td th:text="${plante.variete}"></td>
-						<td th:text="${plante.surfaceOccupe}"></td>
+					<tr th:each="plante : ${plantees}">
+						<td th:text="${plante.plante.nom}"></td>
+						<td th:text="${plante.quantite}"></td>
+						<td th:text="${plante.dateMeP}"></td>
+						<td th:text="${plante.dateRecolta}"></td>
 						<td><a
-							th:href="@{/plantes/delete/{id}(id=${plante.idPlante})}">Effacer</a></td>
+							th:href="@{/planteCarre/delete/{id}(id=${plante.idPlanteInCarre})}">Effacer</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<p>
-			<a href="/plantes/add">Ajouter une plante</a>
+			<a href="/planteCarre/add">Ajouter une plante</a>
 		</p>
 	</div>
 </body>

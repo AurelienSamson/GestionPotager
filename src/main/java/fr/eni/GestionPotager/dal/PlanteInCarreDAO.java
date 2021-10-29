@@ -10,7 +10,7 @@ import fr.eni.GestionPotager.bo.Carre;
 import fr.eni.GestionPotager.bo.PlanteInCarre;
 
 public interface PlanteInCarreDAO extends CrudRepository<PlanteInCarre, Integer> {
-	@Query("FROM PlanteInCarre  WHERE CarreIdCarre =:id")
+	@Query("FROM PlanteInCarre p WHERE p.carre.idCarre =:id")
 	List<PlanteInCarre> findPlanteByCarre(@Param("id") int id);
 	
 	@Query("FROM PlanteInCarre WHERE idPlanteInCarre = :id")

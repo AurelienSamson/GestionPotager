@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.annotation.SessionScope;
 
 import fr.eni.GestionPotager.bll.carre.CarreManager;
 import fr.eni.GestionPotager.bll.plante.PlanteManager;
@@ -17,18 +18,22 @@ import fr.eni.GestionPotager.bll.planteInCarre.PlanteInCarreManager;
 import fr.eni.GestionPotager.bo.Plante;
 import fr.eni.GestionPotager.bo.PlanteInCarre;
 
+@SessionScope
 @Controller
 public class PlanteInCarreController {
 
+	private int idCarre;
+	
 	@Autowired
 	PlanteInCarreManager manager;
 
 	@Autowired
 	CarreManager managerCarre;
 
-	@GetMapping("/carres/{id}/plantes")
-	public String listPlanteInCarre(@PathVariable("id") int id, Model model) {
+	@GetMapping("/carres/{idCarre}/plantes")
+	public String listPlanteInCarre(@PathVariable("idCarre") int id, Model model) {
 		model.addAttribute("plantees", manager.getAllByCarreId(id));
+		this.idCarre = id;
 		return "planteInCarre";
 	}
 
@@ -36,7 +41,7 @@ public class PlanteInCarreController {
 	public String deletePlante(@PathVariable("id") int id, Model model) throws PlanteManagerException {
 		manager.deletePlanteInCarre(manager.findById(id));
 
-		return "redirect:/plantes/index";
+		return "redirect:/carres/"+ this.idCarre +"/plantes";
 	}
 
 	@GetMapping("/planteCarre/add")
@@ -51,7 +56,7 @@ public class PlanteInCarreController {
 			return "addPlanteInCarre";
 		}
 		manager.addPlanteInCarre(planteInCarre);
-		return "redirect:/plantes/index"; // n'appelle pas l'html mais l'url
+		return "redirect:/carres/"+ this.idCarre +"/plantes"; // n'appelle pas l'html mais l'url
 
 	}
 }
